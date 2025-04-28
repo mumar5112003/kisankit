@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "924393294620",
+    "project_id": "kisankit-a98db",
+    "storage_bucket": "kisankit-a98db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924393294620:android:54eb65344eba71b15088d9",
+        "android_client_info": {
+          "package_name": "com.example.kisankit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924393294620-6nap109itb8keg48mvc3pccespgm6bjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC5qBZKXNGE4H1yclNrd3raFpTeOBVDhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924393294620-6nap109itb8keg48mvc3pccespgm6bjj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "924393294620-ufoqep61khtpct9s3pm7458haeqh7phk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kisankit"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924393294620:android:8c4f2d3f367bfcc85088d9",
+        "android_client_info": {
+          "package_name": "com.kisankit.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924393294620-6nap109itb8keg48mvc3pccespgm6bjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC5qBZKXNGE4H1yclNrd3raFpTeOBVDhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924393294620-6nap109itb8keg48mvc3pccespgm6bjj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "924393294620-ufoqep61khtpct9s3pm7458haeqh7phk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kisankit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
