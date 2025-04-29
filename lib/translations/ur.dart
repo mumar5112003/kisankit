@@ -69,4 +69,38 @@ const Map<String, String> ur = {
 
   'upload_failed': 'اپ لوڈ ناکام ہوگئی',
   'something_went_wrong': 'کچھ غلط ہو گیا',
+  'edit_profile': 'پروفائل ترمیم کریں',
+  'cancel': 'منسوخ کریں',
+  'save': 'محفوظ کریں',
+  'profile': 'پروفائل',
+  'not_set': 'سیٹ نہیں کیا گیا',
+  'detection_history': 'پتہ لگانے کی تاریخ',
+  'no_history_found': 'کوئی پتہ لگانے کی تاریخ نہیں ملی',
+  'failed_to_fetch_history': 'پتہ لگانے کی تاریخ حاصل کرنے میں ناکام',
+  'our_features': 'ہماری خصوصیات',
+  'why_kisankit': 'کسان کٹ کیوں؟',
+  'benefit_1_title': 'استعمال میں آسان',
+  'benefit_1_desc': 'تمام سطح کے کسانوں کے لیے بدیہی انٹرفیس۔',
+  'benefit_2_title': 'درست پتہ لگانا',
+  'benefit_2_desc': 'فصلوں کی بیماریوں کی درست شناخت کے لیے جدید AI۔',
+  'benefit_3_title': 'فوری مدد',
+  'benefit_3_desc': 'اپنی فصلوں کی حفاظت کے لیے فوری مشورہ حاصل کریں۔',
+  'join_kisankit': 'آج ہی کسان کٹ میں شامل ہوں',
+  'join_kisankit_desc':
+      'سمارٹ ٹیکنالوجی کے ساتھ اپنی کاشتکاری کو بااختیار بنائیں۔',
+  'profile_details': 'پروفائل کی تفصیلات',
+  'success': 'کامیابی',
+
+  'profile_updated': 'پروفائل کامیابی سے اپ ڈیٹ ہوا',
+  'failed_to_update_profile': 'پروفائل اپ ڈیٹ کرنے میں ناکامی',
+  'unknown': 'نامعلوم',
+  // Existing translations
+  'kisankit': 'کسان کٹ',
+  'logout': 'لاگ آؤٹ',
+
+  'edit': 'ترمیم',
+
+  'no_user_logged_in': 'کوئی صارف لاگ ان نہیں ہے',
+
+  'user': 'صارف',
 };

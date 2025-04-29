@@ -8,79 +8,63 @@ import 'package:kisankit/screens/auth/LoginScreen.dart';
 import 'package:kisankit/screens/detect/DetectionResultScreen.dart';
 import 'package:kisankit/screens/detect/RecommendationsScreen.dart';
 import 'package:kisankit/screens/home/HomeScreen.dart';
-
 import 'package:kisankit/screens/voice/VoiceInputScreen.dart';
 import 'package:kisankit/theme/app_theme.dart';
 import 'package:kisankit/translations/MyTranslations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// Import the controller
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferences.getInstance();
   await Firebase.initializeApp();
-  Get.put(UserController()); // Ensure Firebase is initialized
+  Get.put(UserController());
+  Get.put(AuthController()); // Initialize AuthController early
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  Future<Locale> _getLocale() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isEnglishSelected') ?? true
-        ? const Locale('en')
-        : const Locale('ur'); // Assuming you store language code as a string
-    // Default to English if not set
-  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Locale>(
-        future: _getLocale(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-                child:
-                    CircularProgressIndicator()); // Show loading indicator while waiting
-          } else if (snapshot.hasError) {
-            return const Center(
-                child: Text('Error loading preferences')); // Handle error case
+    final authController = Get.put(AuthController());
+    return Obx(() {
+      return GetMaterialApp(
+        title: 'KisanKit',
+        translations: MyTranslations(),
+        locale: authController.locale.value, // Use reactive locale
+        fallbackLocale: const Locale('en'),
+        theme: AppTheme.getTheme(authController.locale.value),
+        debugShowCheckedModeBanner: false,
+        home: Obx(() {
+          if (authController.isLoading.value) {
+            return const Scaffold(
+              backgroundColor:
+                  AppTheme.scaffoldBackgroundColor, // Set background color
+              body: Center(
+                child: CircularProgressIndicator(
+                  color: AppTheme.primaryColor,
+                  backgroundColor: AppTheme.scaffoldBackgroundColor,
+                ),
+              ),
+            );
           }
-          final locale = snapshot.data!;
-          return GetMaterialApp(
-            title: 'KisanKit',
-            // Initialize the supported locales and the default locale
-            translations: MyTranslations(), // GetX translation setup
-            locale: locale, // Set initial locale
-            fallbackLocale: locale,
-            theme: AppTheme.getTheme(
-                locale), // Fallback if translation is not found
-            debugShowCheckedModeBanner: false,
-            home: Obx(() {
-              // Use Obx to listen to the isLoggedIn state
-              final authController = Get.put(AuthController());
-              if (authController.isLoggedIn.value) {
-                // If logged in, show the HomeScreen
-                return HomeScreen();
-              } else {
-                // If not logged in, show the IntroScreen
-                return LoginScreen();
-              }
-            }),
-
-            getPages: [
-              // Define your named routes here
-              GetPage(name: '/intro', page: () => IntroScreen()),
-              GetPage(name: '/home', page: () => HomeScreen()),
-              GetPage(name: '/login', page: () => LoginScreen()),
-              GetPage(name: '/voice', page: () => VoiceInputScreen()),
-              GetPage(name: '/detect', page: () => DetectionResultScreen()),
-              GetPage(
-                  name: '/recommendations',
-                  page: () => RecommendationsScreen()),
-            ],
-          );
-        });
+          if (authController.isLoggedIn.value) {
+            return HomeScreen();
+          }
+          return authController.isFirstTimeUser.value
+              ? IntroScreen()
+              : LoginScreen();
+        }),
+        getPages: [
+          GetPage(name: '/intro', page: () => IntroScreen()),
+          GetPage(name: '/home', page: () => HomeScreen()),
+          GetPage(name: '/login', page: () => LoginScreen()),
+          GetPage(name: '/voice', page: () => VoiceInputScreen()),
+          GetPage(name: '/detect', page: () => DetectionResultScreen()),
+          GetPage(
+              name: '/recommendations', page: () => RecommendationsScreen()),
+        ],
+      );
+    });
   }
 }
 

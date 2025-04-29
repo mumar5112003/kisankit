@@ -66,4 +66,37 @@ const Map<String, String> en = {
   'gallery': 'Gallery',
   'upload_failed': 'Upload failed',
   'something_went_wrong': 'Something went wrong',
+  'edit_profile': 'Edit Profile',
+  'cancel': 'Cancel',
+  'save': 'Save',
+  'profile': 'Profile',
+  'not_set': 'Not Set',
+  'detection_history': 'Detection History',
+  'no_history_found': 'No Detection History Found',
+  'failed_to_fetch_history': 'Failed to Fetch Detection History',
+  'our_features': 'Our Features',
+  'why_kisankit': 'Why Kisankit?',
+  'benefit_1_title': 'Easy to Use',
+  'benefit_1_desc': 'Intuitive interface for farmers of all levels.',
+  'benefit_2_title': 'Accurate Detection',
+  'benefit_2_desc': 'Advanced AI for precise crop disease identification.',
+  'benefit_3_title': 'Instant Support',
+  'benefit_3_desc': 'Get real-time advice to protect your crops.',
+  'join_kisankit': 'Join Kisankit Today',
+  'join_kisankit_desc': 'Empower your farming with smart technology.',
+  'profile_details': 'Profile Details',
+  'success': 'Success',
+
+  'profile_updated': 'Profile updated successfully',
+  'failed_to_update_profile': 'Failed to update profile',
+  'unknown': 'Unknown',
+  // Existing translations
+  'kisankit': 'Kisankit',
+  'logout': 'Logout',
+
+  'edit': 'Edit',
+
+  'no_user_logged_in': 'No user logged in',
+
+  'user': 'User',
 };

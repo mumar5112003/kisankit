@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,15 @@ class RecommendationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String label = Get.arguments['label'];
-    final File imageFile = Get.arguments['imageFile'];
+    final bool isUrl = Get.arguments['isUrl'];
+    File imageFile = File('');
+    String imageUrl = '';
+    if (isUrl) {
+      imageUrl = Get.arguments['imageUrl'];
+    } else {
+      imageFile = Get.arguments['imageFile'];
+    }
+
     final bool isEnglish = Get.locale?.languageCode == 'en';
 
     return Scaffold(
@@ -48,12 +57,29 @@ class RecommendationsScreen extends StatelessWidget {
                 // Show uploaded image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.file(
-                    imageFile,
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
+                  child: imageUrl.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          height: 200,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: AppTheme.primaryColor,
+                              strokeWidth: 2,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Icon(
+                            Icons.error,
+                            color: AppTheme.secondaryColor,
+                            size: 40,
+                          ),
+                        )
+                      : Image.file(
+                          imageFile,
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 const SizedBox(height: 20),
 

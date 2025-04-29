@@ -70,6 +70,7 @@ class DetectionResultScreen extends StatelessWidget {
                 Get.toNamed('/recommendations', arguments: {
                   'label': label,
                   'imageFile': imageFile,
+                  'isUrl': false
                 });
               },
               child: Text(
