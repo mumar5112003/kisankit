@@ -99,4 +99,6 @@ const Map<String, String> en = {
   'no_user_logged_in': 'No user logged in',
 
   'user': 'User',
+  'try_again':
+      'Sorry, our system could not identify any crop or disease accurately in the picture. Please try again.'
 };

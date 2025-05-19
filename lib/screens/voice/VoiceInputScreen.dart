@@ -88,7 +88,7 @@ class _VoiceInputScreenState extends State<VoiceInputScreen> {
           'parts': [
             {
               'text':
-                  'Answer to following query in ${Get.locale?.languageCode == 'en' ? "english" : "Urdu"} and pretend to be crop doctor (in pakistan) also remember that your response will be played using text to speech and make sure to not use any special characters like "*" in your response, so any characters like "*" should not be in your response:' +
+                  'Answer to following query in ${Get.locale?.languageCode == 'en' ? "english" : "Urdu"} and act as crop doctor also remember that your response will be played using text to speech and make sure to not use any special characters like "*" in your response, so any characters like "*" should not be in your response:' +
                       query
             }
           ]

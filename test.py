@@ -1,11 +1,11 @@
 import requests
 
-image_path = "test.jpg"  # Replace with your image filename
+image_path = "download (3).jpg"  # Replace with your image filename
 
 try:
     with open(image_path, 'rb') as img:
         response = requests.post(
-            "https://kisankit-backend.onrender.com/predict",
+            "http://192.168.0.108:5000/predict",
             files={"image": img},
             timeout=30
         )

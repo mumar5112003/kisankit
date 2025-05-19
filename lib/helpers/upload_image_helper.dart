@@ -49,7 +49,10 @@ Future<Map<String, dynamic>?> pickAndUploadImage() async {
 
   if (source == null) return null;
 
-  final pickedFile = await picker.pickImage(source: source);
+  final pickedFile = await picker.pickImage(
+    source: source, imageQuality: 50, // Compress image to 50% quality
+    maxWidth: 800,
+  );
   if (pickedFile == null) return null;
 
   final imageFile = File(pickedFile.path);
@@ -64,7 +67,7 @@ Future<Map<String, dynamic>?> pickAndUploadImage() async {
 
   try {
     // Step 1: Upload image to prediction API
-    final uri = Uri.parse('http://192.168.100.176:5000/predict');
+    final uri = Uri.parse('http://10.135.80.139:5000/predict');
     final request = http.MultipartRequest('POST', uri)
       ..files.add(await http.MultipartFile.fromPath('image', imageFile.path));
 
@@ -72,13 +75,19 @@ Future<Map<String, dynamic>?> pickAndUploadImage() async {
 
     if (response.statusCode != 200) {
       Get.back(); // Hide loading
-      Get.snackbar('error'.tr, '${'upload_failed'.tr}: ${response.statusCode}');
+      Get.snackbar('error'.tr, '${'upload_failed'.tr}: ${response.statusCode}',
+          duration: const Duration(seconds: 6));
       return null;
     }
 
     final resBody = await http.Response.fromStream(response);
     final data = jsonDecode(resBody.body);
-
+    if (data['confidence'] < 90) {
+      Get.back(); // Hide loading
+      Get.snackbar('error'.tr, 'try_again'.tr,
+          duration: const Duration(seconds: 6));
+      return null;
+    }
     // Step 2: Upload image to Firebase Storage
     final storageRef = FirebaseStorage.instance.ref().child(
         'detectionHistory/${user.uid}/${DateTime.now().millisecondsSinceEpoch}.jpg');
